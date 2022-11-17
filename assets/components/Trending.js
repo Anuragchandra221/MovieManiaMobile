@@ -3,7 +3,7 @@ import { FlatList, View } from "react-native"
 import {get_trending} from "../service"
 import ItemSeparator from "./ItemSeparator"
 import MovieCard from "./MovieCard"
-export default function Trending(){
+export default function Trending({navigation}){
     const [trending, setTrending] = useState(null)
     useEffect(()=>{
         get_trending().then((result)=>{
@@ -15,14 +15,13 @@ export default function Trending(){
         <View style={styles.container}>
             <FlatList
              data={trending} 
-             renderItem={({item})=><MovieCard item={item}/>}
+             renderItem={({item})=><MovieCard item={item} navigation={navigation}/>}
              showsHorizontalScrollIndicator={false}
              keyExtractor={item=>item.id}
              horizontal={true}
              ListHeaderComponent={<ItemSeparator width={20} />}
              ListFooterComponent={<ItemSeparator width={20} />}
              ItemSeparatorComponent={<ItemSeparator width={20} />}
-             
             />
         </View>
     ):<></>

@@ -1,16 +1,17 @@
-import { Text,Image,View } from "react-native";
+import { Text,Image, TouchableOpacity } from "react-native";
 import { get_image_original } from "../service";
-export default function MovieCard({item}){
+
+export default function MovieCard(props){
     return (
-        <View>
+        <TouchableOpacity onPress={()=>props.navigation.push("Movie", {id:props.item.id})}>
             <Image
             style={styles.img}
             source={{
-                uri: get_image_original(item.poster_path)
+                uri: get_image_original(props.item.poster_path)
             }}
             />
-            <Text style={styles.text} numberOfLines={3}>{item.title}</Text>
-        </View>
+            <Text style={styles.text} numberOfLines={3}>{props.item.title}</Text>
+        </TouchableOpacity>
     )
 }
 const styles = {

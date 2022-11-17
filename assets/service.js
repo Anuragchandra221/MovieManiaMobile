@@ -15,6 +15,19 @@ const get_upcoming = ()=>{
 function get_image_original(path){
     return `https://image.tmdb.org/t/p/original${path}`
 }
+function get_movie(id){
+    // console.log(`${base_url}/movie/${id}?api_key=${api_key}`)
+    return axios.get(`${base_url}/movie/${id}?api_key=${api_key}`)
+}
+function get_credits(id){
+    return axios.get(`${base_url}/movie/${id}/credits?api_key=${api_key}`)
+}
+function get_similar(id){
+    return axios.get(`${base_url}/movie/${id}/similar?api_key=${api_key}&page=1`)
+}
+function search(keyword){
+    return axios.get(`${base_url}/search/movie`, {params: {'api_key': api_key, 'query': keyword}})
+}
 export  {
-    get_trending, get_image_original, get_new_releases, get_upcoming
+    get_trending, get_image_original, get_new_releases, get_upcoming, get_movie, get_credits, get_similar,search
 }

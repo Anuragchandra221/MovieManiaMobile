@@ -3,7 +3,7 @@ import { FlatList, View } from "react-native"
 import {get_new_releases} from "../service"
 import ItemSeparator from "./ItemSeparator"
 import MovieCard from "./MovieCard"
-export default function NewReleases(){
+export default function NewReleases({navigation}){
     const [newReleases, setNewReleases] = useState(null)
     useEffect(()=>{
         get_new_releases().then((result)=>{
@@ -14,7 +14,7 @@ export default function NewReleases(){
         <View style={styles.container}>
             <FlatList
              data={newReleases} 
-             renderItem={({item})=><MovieCard item={item}/>}
+             renderItem={({item})=><MovieCard item={item} navigation={navigation}/>}
              showsHorizontalScrollIndicator={false}
              keyExtractor={item=>item.id}
              horizontal={true}
@@ -31,3 +31,4 @@ const styles = {
         marginTop: 15
     }
 }
+  

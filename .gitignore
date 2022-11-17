@@ -3,7 +3,7 @@ node_modules/
 dist/
 npm-debug.*
 *.jks
-*.p8
+*.p8  
 *.p12
 *.key
 *.mobileprovision
@@ -12,3 +12,4 @@ web-build/
 api_key.js
 # macOS
 .DS_Store
+   

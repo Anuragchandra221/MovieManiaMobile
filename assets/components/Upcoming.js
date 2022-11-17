@@ -3,7 +3,7 @@ import { FlatList, View } from "react-native"
 import {get_upcoming} from "../service"
 import ItemSeparator from "./ItemSeparator"
 import MovieCard from "./MovieCard"
-export default function Upcoming(){
+export default function Upcoming({navigation}){
     const [upcoming, setUpcoming] = useState(null)
     useEffect(()=>{
         get_upcoming().then((result)=>{
@@ -14,7 +14,7 @@ export default function Upcoming(){
         <View style={styles.container}>
             <FlatList
              data={upcoming} 
-             renderItem={({item})=><MovieCard item={item}/>}
+             renderItem={({item})=><MovieCard item={item} navigation={navigation}/>}
              showsHorizontalScrollIndicator={false}
              keyExtractor={item=>item.id}
              horizontal={true}
