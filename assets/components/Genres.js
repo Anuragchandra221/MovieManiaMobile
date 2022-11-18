@@ -2,10 +2,11 @@ import {  View } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 import GenreItem from "./GenreItem"
 import ItemSeparator from "./ItemSeparator"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { get_genres } from "../service"
 
 export default function Genres(){
-    const [genre, setGenre] = useState('All')
+    const [genre, setGenre] = useState(['All'])
     const genres = ['All', 'Action', 'Comedy', 'Drama','Sci-Fi','Thriller']
     return (
         <View style={styles.container}>

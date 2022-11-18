@@ -28,6 +28,9 @@ function get_similar(id){
 function search(keyword){
     return axios.get(`${base_url}/search/movie`, {params: {'api_key': api_key, 'query': keyword}})
 }
+function get_genres(){
+    return axios.get(`${base_url}/genre/movie/list?api_key=${api_key}`)
+}
 export  {
-    get_trending, get_image_original, get_new_releases, get_upcoming, get_movie, get_credits, get_similar,search
+    get_trending, get_image_original, get_new_releases, get_upcoming, get_movie, get_credits, get_similar,search, get_genres
 }

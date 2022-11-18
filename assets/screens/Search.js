@@ -1,10 +1,9 @@
-import { View,Text, TextInput } from "react-native"
-import { Ionicons } from '@expo/vector-icons';
+import { View,Text, TextInput, TouchableOpacity } from "react-native"
 import { useEffect, useState } from "react";
+import { Ionicons } from '@expo/vector-icons';
 import { search } from "../service";
-import Suggetions from "./Suggetions";
-import ItemSeparator from "./ItemSeparator";
-export default function Search(){
+import { ScrollView } from "react-native";
+export default function Search({navigation}){
     const [text, setText] = useState('')
     const [movie, setMovie] = useState(null)
     useEffect(()=>{
@@ -14,6 +13,7 @@ export default function Search(){
     }, [text])
     return(
         <View style={styles.container}>
+            <View style={styles.div}>
             <Ionicons style={{marginLeft: 10}} name="search" size={24} color="#FFAD00" />
             <TextInput 
             style={styles.input}
@@ -22,23 +22,29 @@ export default function Search(){
             value={text}
             onChangeText={(e)=>setText(e)}
             />
-            
-            {movie?<View style={{}}>
+            </View>
+            {movie?<ScrollView style={{marginLeft: 15, height: 100, overflow: 'visible'}}>
                 {movie.map((item, key)=>{
                     return (
-                        <Text style={{color: '#fff'}}>{item.title}</Text>
+                        <TouchableOpacity onPress={()=>navigation.push("Movie", {id:item.id})}>
+                            <Text key={key}  style={{color: '#fff', marginBottom: 10}}>{item.title}</Text>
+                        </TouchableOpacity>
                     )
                 })}
-            </View>:<></>}
+            </ScrollView>:<></>}
         </View>
     )
 }
 const styles = {
     container:{
         flex:1,
+        backgroundColor: '#000',
+    },
+    div:{
         flexDirection: 'row',
         alignItems: 'center',
         borderWidth: 2,
+        marginTop: 40,
         borderColor: '#FFAD00',
         padding: 0,
         height: 50,
@@ -49,5 +55,6 @@ const styles = {
     input:{
         height: 50,
         padding: 10,
+        color: '#fff'
     }
 }

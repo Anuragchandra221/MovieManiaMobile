@@ -7,7 +7,8 @@ import Trending from '../components/Trending';
 import NewReleases from '../components/NewReleases';
 import Upcoming from '../components/Upcoming';
 import Footer from '../components/Footer';
-import Search from '../components/Search';
+import { Ionicons } from '@expo/vector-icons';
+import Slider from '../components/Slider';
 
 
 export default function Home({navigation}) {
@@ -16,10 +17,14 @@ export default function Home({navigation}) {
     })
   return fontsLoaded? (
     <ScrollView style={styles.container}>
+      <View style={{flex:1,flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text style={styles.headerText}>M<Text style={{color: '#FFF'}}>ovie</Text>M<Text style={{color: '#FFF'}}>ania</Text></Text>
+        <Ionicons name="search" onPress={()=>{navigation.push("Search")}} style={{marginTop: 46, marginRight: 12}} size={28} color="#FFAD00" />
+      </View>
         <StatusBar style="light"/>
-        <Search />
-        <Genres />
+        {/* <Search /> */}
+        {/* <Genres /> */}
+        <Slider />
         <Text style={styles.heading}>
             Trending <Text style={{color: '#FFAD00'}}>&gt;</Text>
         </Text>
